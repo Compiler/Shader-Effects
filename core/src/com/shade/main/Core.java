@@ -12,10 +12,10 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 public class Core extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Texture tex;
-	private Sprite sprite;
+	private Sprite sprite, background;
 	private OrthographicCamera camera;
 	
-	private ShaderProgram shader;
+	private ShaderProgram shader, def;
 	
 	@Override
 	public void create () {
@@ -24,12 +24,13 @@ public class Core extends ApplicationAdapter {
 		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 		
-		tex = new Texture(Gdx.files.internal("bgloading.png"));
+		tex = new Texture(Gdx.files.internal("water.png"));
 		
 		sprite = new Sprite(tex);
-		sprite.setBounds(100, 100, Gdx.graphics.getWidth() / 1.5f, Gdx.graphics.getHeight() / 1.5f);
-		
-		ShaderProgram.pedantic = false;
+		sprite.setBounds(0, -Gdx.graphics.getHeight() / 1.5f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		background = new Sprite(new Texture("back.png"));
+		background.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		//ShaderProgram.pedantic = false;
 		shader = new ShaderProgram(Gdx.files.internal("shaders/colorShading.vert"), Gdx.files.internal("shaders/colorShading.frag"));
 		
 		
@@ -38,6 +39,7 @@ public class Core extends ApplicationAdapter {
 
 		
 		batch = new SpriteBatch();
+		def = batch.createDefaultShader();
 	}
 
 	float elapsedTime = 0;
@@ -45,13 +47,27 @@ public class Core extends ApplicationAdapter {
 	public void render () {
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
-		elapsedTime += Gdx.graphics.getDeltaTime();
+		elapsedTime += Gdx.graphics.getDeltaTime() * 1;
+		
+		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		
 		batch.begin();
+		
+		
+		batch.setShader(def);
+		background.draw(batch);
+		
+		
 		batch.setShader(shader);
 		shader.setUniformf(shader.getUniformLocation("time"), elapsedTime);
+		
+		
 		sprite.draw(batch);
+		
+		
 		batch.end();
 	}
 }
