@@ -2,11 +2,11 @@ package com.shade.main.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.shade.main.Core;
+import com.shade.main.Ripple;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new Core(), config);
+		new LwjglApplication(new Ripple(), config);
 	}
 }
