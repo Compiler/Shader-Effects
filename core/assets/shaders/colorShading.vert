@@ -18,6 +18,7 @@ void main() {
     v_texCoords = a_texCoord0;
     //a_position.x + 75 * sin(time + a_position.y * 2)
     //a_position.y + 15 * cos(time + a_position.x * 2)
+    
     vec4 newPos = vec4(a_position.x,a_position.y + 15 * (1+cos(time + a_position.x * 2)), a_position.z, a_position.w);
     gl_Position = u_projTrans * newPos;
     f_time = time;
