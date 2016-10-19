@@ -69,20 +69,25 @@ public class Ripple extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-	    Gdx.gl20.glEnable(GL20.GL_BLEND);   
+	        Gdx.gl20.glEnable(GL20.GL_BLEND);   
 
 		batch.begin();
 		batch.setShader(shader);
 		// background.draw(batch);
 
-		batch.setShader(fore);
+		batch.setShader(fore); 
+		
+		
 		fore.setUniformi(fore.getUniformLocation("u_tex0"), 0);
 		fore.setUniformi(fore.getUniformLocation("u_tex1"), 2);
 		fore.setUniformf(fore.getUniformLocation("alpha"), .75f);
 		fore.setUniformf(fore.getUniformLocation("timedelta"), elapsedTime);
+		
+		
 		sprite.draw(batch);
 		s.draw(batch);
-		System.out.println(shader.getLog());
+		
+		
 
 		batch.end();
 	}
