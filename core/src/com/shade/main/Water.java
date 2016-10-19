@@ -17,6 +17,10 @@ public class Water extends ApplicationAdapter {
 	
 	private ShaderProgram shader, def;
 	
+	
+	/*
+	* creates or initializes all base objects and instance variables
+	*/
 	@Override
 	public void create () {
 		
@@ -43,6 +47,10 @@ public class Water extends ApplicationAdapter {
 	}
 
 	float elapsedTime = 0;
+	
+	/*
+	* starts the gameloop
+	*/
 	@Override
 	public void render () {
 		camera.update();
