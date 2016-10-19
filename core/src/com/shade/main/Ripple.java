@@ -18,6 +18,9 @@ public class Ripple extends ApplicationAdapter {
 
 	private ShaderProgram shader, fore, def;
 
+	/*
+	* initialize all objects and instance variables
+	*/
 	@Override
 	public void create() {
 
@@ -51,7 +54,8 @@ public class Ripple extends ApplicationAdapter {
 	}
 
 	float elapsedTime = 0;
-
+	
+	//start render loop
 	@Override
 	public void render() {
 		camera.update();
